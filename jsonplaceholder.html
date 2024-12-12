@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <div>
+
+        <h1>JSONPLACEHOLDER USERS</h1>
+
+        <div id="users-container">
+
+        </div>
+
+    </div>
+
+    <script>
+        //declaramos una función asíncrona para obtener los usuarios
+        async function getUsers(){
+            //Asignamos la api a una constante:
+            const apiUrl = 'https://jsonplaceholder.typicode.com/users';
+
+            //Solicitamos obtener los datos que devuelve la API:
+            const response = await fetch(apiUrl);
+            if(!response.ok){
+                console.error('Error en la solicitud');
+                return;
+            }
+            //Si hemos obtenido la respuesta convertimos los datos
+            //a JSON
+            const users = await response.json();
+            console.log(users);
+
+            //Maquetar los datos
+            for(user of users){
+                //Creamos la tarjeta:
+                const userCard = document.createElement('div');
+                //Crear la etiqueta para el name
+                const name = document.createElement('p');
+                //Asignamos el dato a name:
+                name.innerHTML = `Name: ${user.name}`;
+
+                const username = document.createElement('p');
+                username.innerHTML = `Username: ${user.username}`;
+
+                const email = document.createElement('p');
+                email.innerHTML = `Email: ${user.email}`;
+
+                const company = document.createElement('p');
+                company.innerHTML = `Compañía: ${user.company.name}`;
+
+                //Insertamos los elementos:
+                userCard.append(name);
+                userCard.append(username);
+                userCard.append(email);
+                userCard.append(company);
+                document.getElementById('users-container').append(userCard);
+            }
+        } 
+        getUsers();
+
+    </script>
+    
+</body>
+</html>
