@@ -4,6 +4,31 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
+    <style>
+        .user-card{
+            padding: 30px;
+            border-style: solid;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            text-align: left;
+            width: 300px;
+            background-color: beige;
+        }
+
+        body{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+
+        }
+
+
+
+    </style>
+
+
 </head>
 <body>
 
@@ -38,6 +63,7 @@
             for(user of users){
                 //Creamos la tarjeta:
                 const userCard = document.createElement('div');
+                userCard.className = 'user-card';
                 //Crear la etiqueta para el name
                 const name = document.createElement('p');
                 //Asignamos el dato a name:
